@@ -19,31 +19,55 @@ public class TicTacToeTest {
 	@Test
 	public void testMarkXInUpperRightCorner() {
 		ticTacToe a = new ticTacToe();
-		assertEquals(ticTacToe.Location.X, a.markX(0,2));
+		a.markX(0,2);
+		assertEquals(ticTacToe.Location.X, a.getMark(0,2));
 	}
 	
 	@Test
 	public void testMarkOInBottomLeftCorner() {
-		assertTrue(false);
+		ticTacToe a = new ticTacToe();
+		a.markO(2,0);
+		assertEquals(ticTacToe.Location.O, a.getMark(2,0));
 	}
 	
 	@Test
 	public void testUnableToMarkOverExistingMark() {
-		assertTrue(false);
+		ticTacToe a = new ticTacToe();
+		a.markO(0,0);
+		a.markX(0,0);
+		assertEquals(ticTacToe.Location.O, a.getMark(0,0));
 	}
 	
 	@Test
 	public void testGameIsNotOverAfterTheFirstMark() {
-		assertTrue(false);
+		ticTacToe a = new ticTacToe();
+		a.markO(0,0);
+		assertEquals(false, a.PlayerWins(ticTacToe.Location.O));
 	}
 	
 	@Test
 	public void testGameIsWonByXHorizontallyAcrossTopRow() {
-		assertTrue(false);
+		ticTacToe a = new ticTacToe();
+		a.markX(0,0);
+		a.markO(1,0);
+		a.markX(0,1);
+		a.markO(1,2);
+		a.markX(0,2);
+		assertEquals(true,a.PlayerWins(ticTacToe.Location.X));
 	}
 	
 	@Test
 	public void testGameIsOverByTieIfAllLocationsAreFilled() {
-		assertTrue(false);
+		ticTacToe a = new ticTacToe();
+		a.markX(0,1);
+		a.markO(0,0);
+		a.markX(1,0);
+		a.markO(1,1);
+		a.markX(2,0);
+		a.markO(0,2);
+		a.markX(1,2);
+		a.markO(2,1);
+		a.markX(2,2);
+		assertEquals(true,a.gameOverByTie());
 	}	
 }
